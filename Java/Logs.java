@@ -1,9 +1,12 @@
 package Java;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import java.util.Properties;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -13,14 +16,33 @@ import java.nio.file.Path;
 
 
 public class Logs {
-    static String time = LocalTime.now().toString();
-    static String date = LocalDate.now().toString();
+    static String realTime = LocalTime.now().toString();
+    static String realDate = LocalDate.now().toString();
+    static String date = null;
+    static String time = null;
     String ProgramLanguage = "java";
-    static File programLog = new File("logs/"+ date + "/" +time +".log");
-    static Path programLogPath = programLog.toPath();
-    private void selfLogInit(String message) throws IOException {
+    Properties configLoad = new Properties();
+    private String config(String property) throws IOException{
+        FileInputStream configFile = new FileInputStream("Config.config");
+        configLoad.load(configFile);
+        String reply = configLoad.getProperty(property).toString();
+        return reply;        
+    };
+    private void updateTime(){
+        date = realDate;
+        time = realTime;
+    }
+    private FileWriter selfLogInit() throws IOException {
+            updateTime();
+            File programLog = new File("logs/"+ date + "/" +time +".log");
+            Path programLogPath = programLog.toPath();
             programLog.createNewFile();
-            try (FileWriter programlogwriter = new FileWriter(programLog)) {
-            }
+            FileWriter programlogwriter = new FileWriter(programLog);
+            return programlogwriter;
+
+            
+    }
+    private void selfLog( String message){
+        
     }
 }
