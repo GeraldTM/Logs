@@ -6,3 +6,5 @@ Use in your programs to create sorted, timestamped log files, with the option to
 instructions coming soon
 ## Usage
 instructions coming soon
+
+<sub><sup>Btw, I do know there are plenty of logging programs out there, I created this partly to learn some more java and try out Rust and C#.</sup></sub>
