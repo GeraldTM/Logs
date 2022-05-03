@@ -16,8 +16,9 @@ import java.nio.file.Path;
 
 
 public class Logs {
-    static String realTime = LocalTime.now().toString();
-    static String realDate = LocalDate.now().toString();
+    static String realTime = LocalTime.now()
+    static String realDate = LocalDate.now()
+    DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(yyyy/MM/dd);
     static String date = null;
     static String time = null;
     static String logging = null;
@@ -46,8 +47,7 @@ public class Logs {
         return reply;        
     };
     private static void updateTime(){
-
-        date = realDate;
+        date = realDate.format(dateFormat).toString;
         time = realTime;
     }
     private static FileWriter selfLogInit() throws IOException {
